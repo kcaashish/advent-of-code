@@ -45,3 +45,48 @@ func TestGetArea(t *testing.T) {
 		})
 	}
 }
+
+func TestGetRibbonLength(t *testing.T) {
+	var tests = []struct {
+		name string
+		in   string
+		want int
+	}{
+		{
+			name: "a",
+			in:   "2x3x4\n1x1x10",
+			want: 48},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			out := getRibbonLength(tt.in)
+			if out != tt.want {
+				t.Errorf("getRibbonLength(%s): got %d, want %d.", tt.in, out, tt.want)
+			}
+		})
+	}
+
+}
+
+func TestGetLength(t *testing.T) {
+	var tests = []struct {
+		name string
+		in   []string
+		want int
+	}{
+		{name: "a", in: []string{"2", "4", "3"}, want: 34},
+		{name: "b", in: []string{"1", "1", "10"}, want: 14},
+		{name: "c", in: []string{"4", "3", "2"}, want: 34},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			out := getLength(tt.in)
+
+			if out != tt.want {
+				t.Errorf("getLength(%s): got %d, want %d.", tt.in, out, tt.want)
+			}
+		})
+	}
+}
